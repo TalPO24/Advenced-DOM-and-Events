@@ -29,6 +29,7 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+/*
 //* Selecting, Creating, and Deleting Elements
 // Selecting elements
 console.log(document.documentElement)
@@ -66,7 +67,10 @@ addEventListener('click', function() {
     // message.remove() // The Element.remove() method removes the element from the DOM.
     message.parentElement.removeChild(message)
 })
+*/
 
+
+/*
 //* Styles Attributes and Classes
 // Styles
 message.style.backgroundColor = '#37383d'
@@ -111,3 +115,19 @@ logo.classList.contains("c")
 
 //* Don't use 
 // logo.className = 'Jonas'
+*/
+
+//* Types of Events and Event Handlers
+const alertH1 = function(e) {
+    alert('addEventListener: Great you are reading the heading ')
+}
+
+const h1 = document.addEventListener('mouseenter', alertH1) // The mouseenter event is fired at an Element when a pointing device (usually a mouse) is initially moved so that its hotspot is within the element at which the event was fired.
+
+
+// old School / old ways 
+// h1.onmouseenter = function(e) {
+//     alert('addEventListener: Great you are reading the heading ')
+// }
+
+setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000)
