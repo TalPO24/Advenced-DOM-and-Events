@@ -117,6 +117,9 @@ logo.classList.contains("c")
 // logo.className = 'Jonas'
 */
 
+
+
+/*
 //* Types of Events and Event Handlers
 const alertH1 = function(e) {
     alert('addEventListener: Great you are reading the heading ')
@@ -131,3 +134,29 @@ const h1 = document.addEventListener('mouseenter', alertH1) // The mouseenter ev
 // }
 
 setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000)
+
+*/
+
+//* Event Propagation: Bubbling and Capturing
+
+// rgb(255, 255, 255)
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+const randomColor = () => `rgb(${randomInt(0,255)},${randomInt(0,255)},${randomInt(0,255)})`
+console.log(randomColor(0, 255))
+
+document.querySelector('.nav__link').addEventListener('click', function(e) {
+    this.style.backgroundColor = randomColor()
+    console.log('LINK', e.target, e.currentTarget)
+    console.log(e.currentTarget === this)
+
+    // Stop propagation
+    // e.stopPropagation()  --  // The stopPropagation() method of the Event interface prevents further propagation of the current event in the capturing and bubbling phases. It does not, however, prevent any default behaviors from occurring; for instance, clicks on links are still processed. If you want to stop those behaviors, see the preventDefault() method. It also does not prevent propagation to other event-handlers of the current element.
+})
+document.querySelector('.nav__links').addEventListener('click', function(e) {
+    this.style.backgroundColor = randomColor()
+    console.log('CONTAINER', e.target, e.currentTarget)
+})
+document.querySelector('.nav').addEventListener('click', function(e) {
+    this.style.backgroundColor = randomColor()
+    console.log('NAV', e.target, e.currentTarget)
+})
