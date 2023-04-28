@@ -37,7 +37,7 @@ document.addEventListener('keydown', function(e) {
 
 //* Button scrolling
 btnScrollTo.addEventListener('click', function(e) {
-    const s1coords = section1.getBoundingClientRect();
+    const s1coords = section1.getBoundingClientRect(); // The Element.getBoundingClientRect() method returns a DOMRect object providing information about the size of an element and its position relative to the viewport.
     console.log(s1coords);
 
     console.log(e.target.getBoundingClientRect());
@@ -95,8 +95,6 @@ document.querySelector('.nav__links').addEventListener('click', function(e) {
 })
 
 //* Tabbed component 
-
-
 tabsContainer.addEventListener('click', function(e) {
     const clicked = e.target.closest('.operations__tab')
 
@@ -131,6 +129,18 @@ const handleHover = function(e) {
 nav.addEventListener('mouseover', handleHover.bind(0.5))
 
 nav.addEventListener('mouseout', handleHover.bind(1))
+
+
+//* Sticky navigation 
+const initCoords = section1.getBoundingClientRect()
+console.log(initCoords)
+
+window.addEventListener('scroll', function() {
+    console.log(window.scrollY)
+
+    if (window.scrollY > initCoords.top) nav.classList.add('sticky');
+    else nav.classList.remove('sticky')
+})
 
 
 /*
