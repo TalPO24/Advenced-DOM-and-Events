@@ -87,7 +87,7 @@ document.querySelector('.nav__links').addEventListener('click', function(e) {
     //Matching strategy
     if (e.target.classList.contains('nav__link')) {
         const id = e.target.getAttribute('href')
-        console.log(id)
+
         document.querySelector(id).scrollIntoView({ // The Element interface's scrollIntoView() method scrolls the element's ancestor containers such that the element on which scrollIntoView() is called is visible to the user.
             behavior: 'smooth'
         })
@@ -163,7 +163,7 @@ const navHeight = nav.getBoundingClientRect().height
 
 const stickyNav = function(entries) {
     const [entry] = entries;
-    console.log(entry)
+
 
     if (!entry.isIntersecting)
         nav.classList.add('sticky');
@@ -177,6 +177,29 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 
 });
 headerObserver.observe(header)
+
+//* Revealing Elements on Scroll
+const allSections = document.querySelectorAll('.section');
+
+const revealSection = function(entries, observer) {
+    const [entry] = entries;
+
+    if (!entry.isIntersecting) return;
+
+    entry.target.classList.remove('section--hidden');
+    observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+    root: null,
+    threshold: 0.15,
+});
+
+allSections.forEach(function(section) {
+    sectionObserver.observe(section);
+    section.classList.add('section--hidden');
+});
+
 
 /////////////////////////////////////////////
 /*
