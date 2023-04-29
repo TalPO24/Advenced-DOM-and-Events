@@ -201,6 +201,36 @@ allSections.forEach(function(section) {
 });
 
 
+//* Lazy loading images
+const imgTargets = document.querySelectorAll('img[data-src]')
+
+const loadImg = function(entries, observer) {
+    const [entry] = entries;
+
+    if (!entry.isIntersecting) return;
+
+    // Replacing src with data-src
+    entry.target.src = entry.target.dataset.src
+
+
+    entry.target.addEventListener('load', function() {
+        entry.target.classList.remove('lazy-img')
+    })
+    observer.unobserve(entry.target)
+}
+
+const imgObserver = new IntersectionObserver(loadImg, {
+    root: null,
+    trashpld: 0,
+    rootMargin: '200px',
+})
+
+imgTargets.forEach(img => imgObserver.observe(img))
+
+
+
+
+
 /////////////////////////////////////////////
 /*
 //* Selecting, Creating, and Deleting Elements
