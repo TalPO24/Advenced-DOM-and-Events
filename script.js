@@ -478,3 +478,24 @@ console.log(h1.parentElement.children);
     if (el !== h1) el.style.transform = 'scale(0.5)'
 })
 */
+
+//* Lifecycle DOM Events
+// The DOMContentLoaded event fires when the HTML document has been completely parsed, and all deferred scripts (<script defer src="…"> and <script type="module">) have downloaded and executed. It doesn't wait for other things like images, subframes, and async scripts to finish loading.
+document.addEventListener('DOMContentLoaded', function(e) {
+    console.log('html parsed and do tree built!', e)
+})
+
+window.addEventListener('load', function(e) {
+    console.log('Page fully loaded', e)
+})
+
+
+// The beforeunload event is fired when the window, the document and its resources are about to be unloaded. The document is still visible and the event is still cancelable at this point.
+
+// This event enables a web page to trigger a confirmation dialog asking the user if they really want to leave the page. If the user confirms, the browser navigates to the new page, otherwise it cancels the navigation.
+
+// window.addEventListener('beforeunload', function(e) {
+//     e.preventDefault()
+//     console.log(e)
+//     e.returnValue = '';
+// })
